@@ -21,10 +21,16 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
    
-    app.MapScalarApiReference();
+    
 }
 app.MapOpenApi();
+app.MapScalarApiReference();
 app.UseHttpsRedirection();
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/scalar");
+    return Task.CompletedTask;
+});
 //app.UseSwaggerUI(options =>
 //{
 //    options.SwaggerEndpoint("/openapi/v1.json", "Api Azure Examen");
